@@ -34,7 +34,7 @@ function adivinarNumero () {
     }
 
     if(intentosRestantes === 0) {
-        mensaje.textContent = `ff! se te acabron los intentos, el numero era ${numeroAdivinar}`;
+        mensaje.textContent = `Uff! se te acabron los intentos, el numero era ${numeroAdivinar}`;
     }
     actualizarIntentos();
 }
