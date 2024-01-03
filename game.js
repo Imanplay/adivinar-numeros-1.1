@@ -44,4 +44,10 @@ const intentos = document.getElementById('intentos');
 intentos.textContent = `Intentos restantes ${intentosRestantes}`;
 }
 
+function reiniciar() {
+    iniciarJuego();
+    document.getElementById('numeroUsuario').value = '';
+    document.getElementById('mensaje').textContent = '';
+}
+
 iniciarJuego();
