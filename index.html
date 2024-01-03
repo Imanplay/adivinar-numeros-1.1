@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="game.js" defer=""></script>
+    <link rel="stylesheet" href="style.css">
     <title>Adivina el numero</title>
 </head>
 <body>
+    <div id="content"></div>
     <h1>Adivina el numero</h1>
     <p id="mensaje"></p>
     <p>Ingresa un numero del 1 al 100</p>
     <input type="number" name="" id="numeroUsuario">
     <button onclick="adivinarNumero()">Adivinar</button>
-    <p><span id="intentos">5</span></p>
     <button type="reset" onclick="reiniciar()">Reiniciar</button>
+    </div>
+    <div id="intento">
+    <p><span id="intentos">5</span></p>
+    </div>
 </body>
 </html>
