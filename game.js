@@ -21,6 +21,7 @@ function adivinarNumero () {
 
     if (numeroUsuario === numeroAdivinar){
         mensaje.textContent = "Felicidades! has adivinado el numero. Eres un crack";
+        document.getElementById("mensaje").style.color = "green"
     }
 
     if (numeroUsuario < numeroAdivinar) {
