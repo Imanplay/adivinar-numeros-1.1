@@ -4,7 +4,7 @@ const mensaje = document.getElementById('mensaje');
 const intentos = document.getElementById('intentos');
 
 function iniciarJuego() {
-    numeroAdivinar = Math.floor(Math.random() * 5) + 1;
+    numeroAdivinar = Math.floor(Math.random() * 100) + 1;
     intentosRestantes = 5;
 }
 
