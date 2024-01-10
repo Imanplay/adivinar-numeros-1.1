@@ -1,54 +1,74 @@
 let numeroAdivinar;
 let intentosRestantes;
+const mensaje = document.getElementById('mensaje');
+const intentos = document.getElementById('intentos');
 
-function iniciarJuego () {
-    numeroAdivinar = Math.floor(Math.random() * 100) + 1;
+function iniciarJuego() {
+    numeroAdivinar = Math.floor(Math.random() * 5) + 1;
     intentosRestantes = 5;
-    actualizarIntentos();
 }
 
-function adivinarNumero () {
+function adivinarNumero() {
     const numeroUsuario =
-    parseInt(document.getElementById('numeroUsuario').value);
-    const mensaje = document.getElementById('mensaje');
-    const intentos = document.getElementById('intentos');
+        parseInt(document.getElementById('numeroUsuario').value);
 
     if (isNaN(numeroUsuario) || numeroUsuario < 1 || numeroUsuario > 100) {
-        mensaje.textContent = 'Por favor, ingresa un numero valido';
+        mensaje.textContent = 'Por favor, ingresa un número valido';
+        decirIntentos('Por favor, ingresa un número valido');
         return;
+    }
+
+    if (numeroUsuario === numeroAdivinar) {
+        mensaje.textContent = "Felicidades! has adivinado el número. Eres un crack";
+        decirIntentos('Felicidades! has adivinado el número. Eres un crack');
+       mensaje.style.color = "green";
+    }
+
+    if (numeroUsuario < numeroAdivinar ) {
+        actualizarIntentos();
+        if (intentosRestantes !== 0){
+        mensaje.textContent = "El número a adivinar es mas grande";
+        decirIntentos(`El número a adivinar es mas grande, te quedan ${intentosRestantes} intentos.`);
+        intentos.textContent = `${intentosRestantes}`;
+        }
     } 
-        intentosRestantes--;
-
-    if (numeroUsuario === numeroAdivinar){
-        mensaje.textContent = "Felicidades! has adivinado el numero. Eres un crack";
-        document.getElementById("mensaje").style.color = "green"
-    }
-
-    if (numeroUsuario < numeroAdivinar) {
-        mensaje.textContent = "El numero a adivinar es mas grande";
+    
+    if (numeroUsuario > numeroAdivinar){
+        actualizarIntentos();
+        if (intentosRestantes !== 0) {
+        mensaje.textContent = "El número a adivinar es mas pequeño";
+        decirIntentos(`El número a adivinar es mas pequeño, te quedan ${intentosRestantes} intentos.`);
         intentos.textContent = `${intentosRestantes}`;
+        }
     }
 
-    if (numeroUsuario > numeroAdivinar) {
-        mensaje.textContent = "El numero a adivinar es mas pequeño";
-        intentos.textContent = `${intentosRestantes}`;
+    if (intentosRestantes === 0 ) {
+        mensaje.textContent = `Uffff! se te acabron los intentos, el número era ${numeroAdivinar}`;
+        decirIntentos(`Uffff! se te acabaron los intentos, el número era ${numeroAdivinar}`);
     }
-
-    if(intentosRestantes === 0) {
-        mensaje.textContent = `Uff! se te acabron los intentos, el numero era ${numeroAdivinar}`;
-    }
-    actualizarIntentos();
 }
 
 function actualizarIntentos() {
-const intentos = document.getElementById('intentos');
-intentos.textContent = `Intentos restantes ${intentosRestantes}`;
+    intentosRestantes--;
+    intentos.textContent = `Intentos restantes: ${intentosRestantes}`;
+}
+
+function decirIntentos(text) {
+    const synth = window.speechSynthesis;
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.lang = 'es-ES'
+    utterance.volume = 1;
+    utterance.rate = 1;
+    synth.speak(utterance);
 }
 
 function reiniciar() {
-    iniciarJuego();
     document.getElementById('numeroUsuario').value = '';
-    document.getElementById('mensaje').textContent = '';
+    mensaje.textContent = '';
+    mensaje.style.color = 'red';
+    iniciarJuego();
+    intentos.textContent = intentosRestantes;
+    decirIntentos('Juego reiniciado');
 }
 
 iniciarJuego();
