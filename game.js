@@ -2,11 +2,14 @@ let numeroAdivinar;
 let intentosRestantes;
 const mensaje = document.getElementById('mensaje');
 const intentos = document.getElementById('intentos');
-const limpiarInput = document.getElementByID("numeroUsuario");
 
 function iniciarJuego() {
     numeroAdivinar = Math.floor(Math.random() * 100) + 1;
     intentosRestantes = 5;
+}
+
+function limpiarInput (){
+const input = document.getElementById("numeroUsuario").value = "";
 }
 
 function adivinarNumero() {
@@ -23,7 +26,7 @@ function adivinarNumero() {
         mensaje.textContent = "Felicidades! has adivinado el número. Eres un crack";
         decirIntentos('Felicidades! has adivinado el número. Eres un crack');
        mensaje.style.color = "green";
-limpiarInput.value = "";
+limpiarInput();
     }
 
     if (numeroUsuario < numeroAdivinar ) {
@@ -32,7 +35,7 @@ limpiarInput.value = "";
         mensaje.textContent = "El número a adivinar es mas grande";
         decirIntentos(`El número a adivinar es mas grande, te quedan ${intentosRestantes} intentos.`);
         intentos.textContent = `${intentosRestantes}`;
-limpiarInput.value = "";
+limpiarInput();
         }
     } 
     
@@ -42,14 +45,14 @@ limpiarInput.value = "";
         mensaje.textContent = "El número a adivinar es mas pequeño";
         decirIntentos(`El número a adivinar es mas pequeño, te quedan ${intentosRestantes} intentos.`);
         intentos.textContent = `${intentosRestantes}`;
-limpiarInput.value = "";
+limpiarInput();
         }
     }
 
     if (intentosRestantes === 0 ) {
         mensaje.textContent = `Uffff! se te acabron los intentos, el número era ${numeroAdivinar}`;
         decirIntentos(`Uffff! se te acabaron los intentos, el número era ${numeroAdivinar}`);
-limpiarInput.value = "";
+limpiarInput();
     }
 }
 
