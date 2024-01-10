@@ -26,7 +26,6 @@ function adivinarNumero() {
         mensaje.textContent = "Felicidades! has adivinado el número. Eres un crack";
         decirIntentos('Felicidades! has adivinado el número. Eres un crack');
        mensaje.style.color = "green";
-limpiarInput();
     }
 
     if (numeroUsuario < numeroAdivinar ) {
